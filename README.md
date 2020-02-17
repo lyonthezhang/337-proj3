@@ -1,1 +1,1 @@
-so i can add people to the readme
+so i can add people to the repo
