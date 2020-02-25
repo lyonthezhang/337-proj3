@@ -1,5 +1,6 @@
 import sys
 import web_scraping
+import multiply_recipe
 
 '''
 Driver script to run recipe parsing & transformation interaction with user.
@@ -28,10 +29,32 @@ def main(url):
 		selection = input(f'Select a transformation (integer between 0 and {num_transformations - 1}): ')
 		print()
 		if selection in [str(x) for x in range(num_transformations)]:
-			print(f'You selected: {transformations[int(selection)]} \n')
-			break
+			selection = int(selection)
+			print(f'You selected: {transformations[selection]} \n')
 		else:
 			print('Invalid selection. Please try again...\n')
+			continue
+
+		# execute user-selected transformation
+		if selection == 0:
+			pass
+		elif selection == 1:
+			pass
+		elif selection == 2:
+			pass
+		elif selection == 3:
+			pass
+		elif selection == 4:
+			pass
+		elif selection == 5:
+			multiplier = float(input('Enter a multiplier (positive float value): '))
+			original_ingredients = res['ingredients']
+			new_ingredients = multiply_recipe.multiply_recipe(original_ingredients, multiplier)
+			print('\nNew Original Quantities:\n', original_ingredients, '\n')
+			print('New Ingredient Quantities:\n', new_ingredients, '\n')
+			res['ingredients'] = new_ingredients
+
+
 
 
 if __name__ == '__main__':
