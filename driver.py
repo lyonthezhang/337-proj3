@@ -25,9 +25,10 @@ def main(url):
 	while True:
 		for i in range(num_transformations):
 			print(f'{i}) {transformations[i]}')
-		selection = input('Select a transformation: ')
+		selection = input(f'Select a transformation (integer between 0 and {num_transformations - 1}): ')
+		print()
 		if selection in [str(x) for x in range(num_transformations)]:
-			print(f'\nYou selected: {transformations[int(selection)]} \n')
+			print(f'You selected: {transformations[int(selection)]} \n')
 			break
 		else:
 			print('Invalid selection. Please try again...\n')
