@@ -14,23 +14,34 @@ def main(url):
 	print('Your URL:')
 	print(url, '\n')
 
-	# parse recipe and print
+	# Scrape recipe at user-provided url
 	rf = web_scraping.RecipeFetcher()
 	res = rf.scrape_recipe(url)
+	
+	# Parse and print the result from the web scraper
 	print('Parsed Recipe:')
 	print(res, '\n')
 
 	# ask user to select a transformation
-	transformations = ['To and from vegetarian (REQUIRED)', 'To and from healthy (REQUIRED)', 'Style of cuisine (AT LEAST ONE REQUIRED)', 'Additional Style of cuisine (OPTIONAL)', 'DIY to easy (OPTIONAL)', 'Double the amount or cut it by half (OPTIONAL)', 'Cooking method (OPTIONAL)']
-	num_transformations = len(transformations)
+	TRANSFORMATIONS = ['To and from vegetarian (REQUIRED)',
+						'To and from healthy (REQUIRED)', 
+						'Style of cuisine (AT LEAST ONE REQUIRED)', 
+						'Additional Style of cuisine (OPTIONAL)', 
+						'DIY to easy (OPTIONAL)', 
+						'Double the amount or cut it by half (OPTIONAL)', 
+						'Cooking method (OPTIONAL)']
+
+	num_transformations = len(TRANSFORMATIONS)
 	while True:
 		for i in range(num_transformations):
-			print(f'{i}) {transformations[i]}')
+			print(f'{i}) {TRANSFORMATIONS[i]}')
 		selection = input(f'Select a transformation (integer between 0 and {num_transformations - 1}): ')
 		print()
+
+		# check that user input is a valid selection (integer between 0 & len(TRANSFORMATIONS))
 		if selection in [str(x) for x in range(num_transformations)]:
 			selection = int(selection)
-			print(f'You selected: {transformations[selection]} \n')
+			print(f'You selected: {TRANSFORMATIONS[selection]} \n')
 		else:
 			print('Invalid selection. Please try again...\n')
 			continue
@@ -38,14 +49,19 @@ def main(url):
 		# execute user-selected transformation
 		if selection == 0:
 			pass
+		
 		elif selection == 1:
 			pass
+		
 		elif selection == 2:
 			pass
+		
 		elif selection == 3:
 			pass
+		
 		elif selection == 4:
 			pass
+		
 		elif selection == 5:
 			multiplier = float(input('Enter a multiplier (positive float value): '))
 			original_ingredients = res['ingredients']
@@ -53,7 +69,9 @@ def main(url):
 			print('\nNew Original Quantities:\n', original_ingredients, '\n')
 			print('New Ingredient Quantities:\n', new_ingredients, '\n')
 			res['ingredients'] = new_ingredients
-
+		
+		elif selection == 6:
+			pass
 
 
 
