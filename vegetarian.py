@@ -3,9 +3,43 @@ import requests
 import re
 import fractions
 
+def replace_veggie(meat):
+
+    new_meat = meat.replace("(", "")
+    new_meat = new_meat.replace(")", "")
+    new_meat = new_meat.replace("/", " ")
+    meat_lst = new_meat.split()
+
+    original_quantity = []
+    ingredient_name = ''
+
+    # split ingredient into tokens to separate the 'quantity' from 'ingredient_name'
+    for token in meat_lst:
+        if any([str(digit) in token for digit in range(10)]) and not any([char in token for char in ['(', ')']]):
+            fraction_obj = sum(map(fractions.Fraction, token.split()))
+            as_float = int(fraction_obj)
+            original_quantity.append(as_float)
+        else:
+            ingredient_name = ingredient_name + ' ' + token
+
+
+    new_quantity = original_quantity
+
+    if len(new_quantity) > 1:
+        num = new_quantity[-1]
+    else:
+        num = new_quantity[0]
+
+    replace_idx = meat_lst.index(str(num)) + 2
+
+    replace_term = meat_lst[replace_idx: ]
+    s = " "
+    term = s.join(replace_term)
+    veggie = meat.replace(term, "chicken")
+    return veggie
+
 def replace_meat(ingredients, meat, type_of_meat_lst, first):
 
-    print(first)
     new_meat = meat.replace("(", "")
     new_meat = new_meat.replace(")", "")
     new_meat = new_meat.replace("/", " ")
@@ -88,6 +122,7 @@ def look_for_meat(ingredients):
     turkey_sandwich = ['turkey', 'slice']
     chicken_sandwich = ['chicken', 'slice']
     seafood_lst = ['salmon', 'cod', 'fish', 'halibut', 'shellfish', 'crab', 'lobster', 'shrimp', 'prawn', 'scallop']
+    vegetarians_lst = ['tofu', 'tofurkey', 'impossible burger', 'veggie burger']
 
     ground = False
     meat = False
@@ -96,23 +131,35 @@ def look_for_meat(ingredients):
     turkey = False
     chicken = False
 
+    vegetarian = True
+
     first = True
 
     for n, ingredient in enumerate(ingredients):
+        if any(x in ingredient.lower() for x in vegetarians_lst):
+            new_ingredient = replace_veggie(ingredient)
+            ingredients[n] = new_ingredient
+            vegetarian = False
+            break
+
         if 'bread' not in ingredient.lower():
-            if any(x in ingredient.lower() for x in turkey_sandwich):
+            #if any(x in ingredient.lower() for x in turkey_sandwich):
+            if 'slice' in ingredient.lower() and 'turkey' in ingredient.lower():
                 turkey = True
                 replace_meat_lst = [ground, meat, sandwich, seafood, turkey, chicken]
                 new_ingredient = replace_meat(ingredients, ingredient, replace_meat_lst, first)
                 ingredients[n] = new_ingredient
                 first = False
+                vegetarian = False
                 continue
-            if any(x in ingredient.lower() for x in chicken_sandwich):
+            #if any(x in ingredient.lower() for x in chicken_sandwich):
+            if 'slice' in ingredient.lower() and 'chicken' in ingredient.lower():
                 chicken = True
                 replace_meat_lst = [ground, meat, sandwich, seafood, turkey, chicken]
                 new_ingredient = replace_meat(ingredients, ingredient, replace_meat_lst, first)
                 ingredients[n] = new_ingredient
                 first = False
+                vegetarian = False
                 continue
         if any(x in ingredient.lower() for x in ground_meat_lst):
             ground = True
@@ -120,6 +167,7 @@ def look_for_meat(ingredients):
             new_ingredient = replace_meat(ingredients, ingredient, replace_meat_lst, first)
             ingredients[n] = new_ingredient
             first = False
+            vegetarian = False
             continue
         if any(x in ingredient.lower() for x in meat_lst):
             meat = True
@@ -127,6 +175,7 @@ def look_for_meat(ingredients):
             new_ingredient = replace_meat(ingredients, ingredient, replace_meat_lst, first)
             ingredients[n] = new_ingredient
             first = False
+            vegetarian = False
             continue
         if any(x in ingredient.lower() for x in sandwich_meat_lst):
             sandwich = True
@@ -134,6 +183,7 @@ def look_for_meat(ingredients):
             new_ingredient = replace_meat(ingredients, ingredient, replace_meat_lst, first)
             ingredients[n] = new_ingredient
             first = False
+            vegetarian = False
             continue
         if any(x in ingredient.lower() for x in seafood_lst):
             seafood = True
@@ -141,10 +191,16 @@ def look_for_meat(ingredients):
             new_ingredient = replace_meat(ingredients, ingredient, replace_meat_lst, first)
             ingredients[n] = new_ingredient
             first = False
+            vegetarian = False
             continue
+
+    if vegetarian:
+        new_ingredient = '1 pound chicken breast'
+        ingredients.append(new_ingredient)
 
     return ingredients
 
+    
 def turn_meat_to_veggie(ingredients):
     new_ingredient = look_for_meat(ingredients)
     return new_ingredient
