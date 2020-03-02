@@ -2,6 +2,7 @@ import sys
 import web_scraping
 import multiply_recipe
 from healthify import healthify, unhealthify
+import parse_recipe
 
 '''
 Driver script to run recipe parsing & transformation interaction with user.
@@ -18,10 +19,11 @@ def main(url):
 	# Scrape recipe at user-provided url
 	rf = web_scraping.RecipeFetcher()
 	res = rf.scrape_recipe(url)
-	
+
 	# Parse and print the result from the web scraper
 	print('Parsed Recipe:')
-	print(res, '\n')
+	parsed_res = parse_recipe.parse_recipe(res)
+	parse_recipe.print_parsed_recipe(parsed_res)
 
 	# ask user to select a transformation
 	TRANSFORMATIONS = ['To and from vegetarian (REQUIRED)',
@@ -76,7 +78,7 @@ def main(url):
 			multiplier = float(input('Enter a multiplier (positive float value): '))
 			original_ingredients = res['ingredients']
 			new_ingredients = multiply_recipe.multiply_recipe(original_ingredients, multiplier)
-			print('\nNew Original Quantities:\n', original_ingredients, '\n')
+			print('\nOriginal Quantities:\n', original_ingredients, '\n')
 			print('New Ingredient Quantities:\n', new_ingredients, '\n')
 			res['ingredients'] = new_ingredients
 		
