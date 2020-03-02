@@ -3,7 +3,6 @@ import web_scraping
 import multiply_recipe
 from healthify import healthify, unhealthify
 import parse_recipe
-import cooking_method
 import vegetarian
 import make_italian
 import lactose

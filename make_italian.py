@@ -1,6 +1,4 @@
 from bs4 import BeautifulSoup
-import requests
-
 """
 
 define meats, herbs, and sauces dictionary
