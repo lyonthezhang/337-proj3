@@ -5,9 +5,6 @@ from healthify_subs import healthy_subs, unhealthy_subs
 def healthify(recipe):
 	directions = recipe['directions']
 	ingredients = recipe['ingredients']
-	print("BEFORE")
-	print(directions)
-	print(ingredients)
 	sub_keys = healthy_subs.keys()
 
 	i = 0
@@ -24,16 +21,11 @@ def healthify(recipe):
 				directions[i] = directions[i].replace(sub_ing, healthy_subs[sub_ing])
 		i += 1
 
-	print("AFTER")
-	print(directions)
-	print(ingredients)
+	return directions, ingredients
 
 def unhealthify(recipe):
 	directions = recipe['directions']
 	ingredients = recipe['ingredients']
-	print("BEFORE")
-	print(directions)
-	print(ingredients)
 	sub_keys = unhealthy_subs.keys()
 
 	i = 0
@@ -50,9 +42,7 @@ def unhealthify(recipe):
 				directions[i] = directions[i].replace(sub_ing, unhealthy_subs[sub_ing])
 		i += 1
 
-	print("AFTER")
-	print(directions)
-	print(ingredients)
+	return directions, ingredients
 
 
 if __name__ == "__main__":
