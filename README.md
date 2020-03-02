@@ -5,18 +5,16 @@
 We wrote separate python files for each function called in driver.py. We use web scraping to scrape recipes from allrecipes.com and then NLP to find information about the ingredients and directions before transforming the recipe. Users can choose how to transform the recipe using the command line.
 
 ## Required Recipe Transformations
-
-## Parse Recipe
-### To and From Vegetarian:
-### To and From Healthy
-### Make Italian
+- Parse Recipe
+- To and From Vegetarian:
+- To and From Healthy
+- Make Italian
 
 ## Extra Recipe Transformations:
-
-### Make Chinese:
-### Double the Amount of Cut it By Half:
-### Make Recipe Lactose-Free:
-### Make Recipe Spicy:
+- Make Chinese
+- Double the Amount of Cut it By Half
+- Make Recipe Lactose-Free:
+- Make Recipe Spicy:
 
 ### How to Run
 1. Download and unzip folder.
