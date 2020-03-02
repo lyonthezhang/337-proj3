@@ -114,3 +114,24 @@ def print_parsed_recipe(parsed_res):
         # print(f"   Tools: {step['tools']}")
         # print(f"   Time: {step['time']}")
         print()
+
+
+def parse_one_ingredient(ingredient):
+    tokens = ingredient.split()
+    quantity = 0
+    name = ''
+    measurement = ''
+
+    # assign token to 'quantity', 'measurement', or 'name'
+    for token in tokens:
+        if any([str(digit) in token for digit in range(10)]) and not any([char in token for char in ['(', ')']]):
+            fraction_obj = sum(map(fractions.Fraction, token.split()))
+            as_float = float(fraction_obj)
+            quantity += as_float
+        elif any([token in x for x in ALL_MEASUREMENT_WORDS]) or any([char in token for char in ['(', ')']]):
+            measurement += token + ' '
+        else:
+            name = name + token + ' '
+    return {'name': name[0:-1],
+            'quantity': quantity,
+            'measurement': measurement[0:-1]}

@@ -6,6 +6,7 @@ import parse_recipe
 import cooking_method
 import vegetarian
 import make_italian
+import lactose
 
 '''
 Driver script to run recipe parsing & transformation interaction with user.
@@ -32,8 +33,9 @@ def main(url):
 	TRANSFORMATIONS = ['To and from vegetarian (REQUIRED)',
 						'To and from healthy (REQUIRED)', 
 						'Style of cuisine (AT LEAST ONE REQUIRED)', 
-						'Additional Style of cuisine (OPTIONAL)', 
+						#'Additional Style of cuisine (OPTIONAL)', 
 						'DIY to easy (OPTIONAL)', 
+						'No Lactose (OPTIONAL)',
 						'Double the amount or cut it by half (OPTIONAL)', 
 						'Cooking method (OPTIONAL)']
 
@@ -81,7 +83,6 @@ def main(url):
 			res['directions'] = new_directions
 			res['ingredients'] = new_ingredients
 
-
 			print("New Directions: {}".format(new_directions))
 			print("New Ingredients: {}".format(new_ingredients))
 			print()
@@ -90,7 +91,12 @@ def main(url):
 			pass
 		
 		elif selection == 4:
-			pass
+			new_ingredients, new_directions = lactose.remove_lactose(res)
+			print("New Ingredients: {}".format(new_ingredients))
+			print("New Directions: {}".format(new_directions))
+			res['ingredients'] = new_ingredients
+			res['directions'] = new_directions
+			print()
 		
 		elif selection == 5:
 			multiplier = float(input('Enter a multiplier (positive float value): '))
@@ -101,7 +107,7 @@ def main(url):
 			res['ingredients'] = new_ingredients
 		
 		elif selection == 6:
-			pass
+			x = cooking_method.change_cooking_method(res)
 
 
 
