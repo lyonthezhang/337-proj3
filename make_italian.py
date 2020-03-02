@@ -9,7 +9,7 @@ define meats, herbs, and sauces dictionary
 
 italian_herbs = ['oregano', 'basil', 'thyme', 'bay leaves', 'rosemary', 'sage', \
                  'parsley', 'chili powder', 'chili flakes', 'garlic']
-italian_meats = ['chicken', 'proscuitto', 'meatball']
+italian_meats = ['chicken', 'proscuitto', 'meatball', 'crab', 'clam', 'mussel', 'scallop']
 italian_sauces = ['tomato sauce', 'italian red sauce', 'pesto']
 
 non_italian_herbs = ['asafoetida', 'achiote', 'allspice', 'cardamom', \
@@ -23,7 +23,7 @@ non_italian_herbs = ['asafoetida', 'achiote', 'allspice', 'cardamom', \
                'dukkah', 'garam masala', 'herbes de provence', 'old bay', \
                 'pickling spice', 'ras el hanout',
                'sichimi togarashi', "za'atar", "taco seasoning"]
-non_italian_meats = ['beef', 'salmon', 'cod', 'tuna', 'crab', 'clam', 'mussel', 'scallop', 'shrimp', 'tofu', 'seitan',\
+non_italian_meats = ['beef', 'salmon', 'cod', 'tuna', 'shrimp', 'tofu', 'seitan',\
                     'duck', 'sausage', 'rib', 'lamb', 'steak', 'bison']
 non_italian_sauces = ['soy', 'sesame', 'ginger', 'peanut', 'hot sauce', 'salsa', 'guacamole', 'picante']
 
@@ -32,6 +32,10 @@ italian_dict = dict.fromkeys(non_italian_sauces, 'tomato sauce')
 italian_dict['brisket'] = 'meat'
 italian_dict['browning sauce'] = 'tomato sauce'
 italian_dict['cheddar'] = 'mozzarella'
+italian_dict['cottage cheese'] = 'mozzarella'
+italian_dict['brie'] = 'mozzarella'
+italian_dict['swiss'] = 'mozzarella'
+italian_dict['gouda'] = 'mozzarella'
 italian_dict['pinto beans'] = 'garbanzo beans'
 italian_dict['black beans'] = 'garbanzo beans'
 italian_dict['fried beans'] = 'garbanzo beans'
