@@ -6,15 +6,15 @@ We wrote separate python files for each function called in driver.py. We use web
 
 ## Required Recipe Transformations
 - Parse Recipe
-- To and From Vegetarian:
+- To and From Vegetarian
 - To and From Healthy
 - Make Italian
 
 ## Extra Recipe Transformations:
 - Make Chinese
 - Double the Amount of Cut it By Half
-- Make Recipe Lactose-Free:
-- Make Recipe Spicy:
+- Make Recipe Lactose-Free
+- Make Recipe Spicy
 
 ### How to Run
 1. Download and unzip folder.
