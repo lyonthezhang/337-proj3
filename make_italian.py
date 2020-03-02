@@ -25,13 +25,16 @@ non_italian_herbs = ['asafoetida', 'achiote', 'allspice', 'cardamom', \
                'sichimi togarashi', "za'atar", "taco seasoning"]
 non_italian_meats = ['beef', 'salmon', 'cod', 'tuna', 'crab', 'clam', 'mussel', 'scallop', 'shrimp', 'tofu', 'seitan',\
                     'duck', 'sausage', 'rib', 'lamb', 'steak', 'bison']
-non_italian_sauces = ['soy', 'sesame', 'ginger', 'peanut', 'hot', 'salsa', 'guacamole', 'picante']
+non_italian_sauces = ['soy', 'sesame', 'ginger', 'peanut', 'hot sauce', 'salsa', 'guacamole', 'picante']
 
 # create dictionary
 italian_dict = dict.fromkeys(non_italian_sauces, 'tomato sauce')
 italian_dict['brisket'] = 'meat'
 italian_dict['browning sauce'] = 'tomato sauce'
 italian_dict['cheddar'] = 'mozzarella'
+italian_dict['pinto beans'] = 'garbanzo beans'
+italian_dict['black beans'] = 'garbanzo beans'
+italian_dict['fried beans'] = 'garbanzo beans'
 italian_dict.update(dict.fromkeys(non_italian_meats[:6], 'chicken'))
 italian_dict.update(dict.fromkeys(non_italian_meats[6:], 'beef'))
 italian_dict.update(dict.fromkeys(non_italian_herbs[:5], 'oregano'))
@@ -45,7 +48,6 @@ italian_dict.update(dict.fromkeys(non_italian_herbs[35:40], 'garlic powder'))
 italian_dict.update(dict.fromkeys(non_italian_herbs[40:45], 'rosemary'))
 italian_dict.update(dict.fromkeys(non_italian_herbs[45:], 'thyme'))
 
-
 """
 
 helper functions for making recipe italian
@@ -54,14 +56,22 @@ helper functions for making recipe italian
 def check_corn_beef(string):
     words = string.lower().split()
     idx = words.index('beef')
-    print(words)
-    print(words[idx - 1])
     if words[idx - 1] == 'corn':
         return 1
     if words[idx - 1] == 'corned':
         return 2
     else:
         return 0
+
+def check_sauce(string):
+    words = string.lower().replace(",", "").split()
+    if words.count('sauce') > 1:
+        idx = words.index('sauce')
+        del words[idx]
+        s = " "
+        return s.join(words)
+    else:
+        return string
 
 
 """
@@ -93,6 +103,11 @@ def italian(recipe):
                     break
                 else:
                     ingredients[i] = ingredients[i].lower().replace(sub_ing, italian_dict[sub_ing])
+
+        # remove second 'sauce'
+        if 'sauce' in ingredients[i].lower().replace(",", ""):
+            ingredients[i] = check_sauce(ingredients[i])
+
         i += 1
 
     i = 0
@@ -102,6 +117,10 @@ def italian(recipe):
             s = step.lower().replace(".", "")
             if sub_ing in s:
                 directions[i] = directions[i].lower().replace(sub_ing, italian_dict[sub_ing])
+
+        # remove second 'sauce'
+        if 'sauce' in directions[i].lower():
+            directions[i] = check_sauce(directions[i])
         i += 1
 
     return directions, recipe
