@@ -41,7 +41,7 @@ def multiply_recipe(ingredients_list, multiplier):
         # convert float to mixed fraction
         base = int(new_quantity // 1)
         if base == new_quantity:
-            new_num = str(base) #+ ' '
+            new_num = str(base) + ' '
         elif new_quantity < 1:
             frac = fractions.Fraction.from_float(new_quantity).limit_denominator()
             new_num = str(frac)

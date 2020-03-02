@@ -7,6 +7,7 @@ import cooking_method
 import vegetarian
 import make_italian
 import lactose
+import make_chinese
 
 '''
 Driver script to run recipe parsing & transformation interaction with user.
@@ -32,9 +33,9 @@ def main(url):
 	# ask user to select a transformation
 	TRANSFORMATIONS = ['To and from vegetarian (REQUIRED)',
 						'To and from healthy (REQUIRED)', 
-						'Style of cuisine (AT LEAST ONE REQUIRED)', 
-						#'Additional Style of cuisine (OPTIONAL)', 
-						'DIY to easy (OPTIONAL)', 
+						'To Italian (AT LEAST ONE REQUIRED)', 
+						'To Chinese (OPTIONAL)', 
+						#'DIY to easy (OPTIONAL)', 
 						'No Lactose (OPTIONAL)',
 						'Double the amount or cut it by half (OPTIONAL)', 
 						'Cooking method (OPTIONAL)']
@@ -88,7 +89,14 @@ def main(url):
 			print()
 		
 		elif selection == 3:
-			pass
+			new_directions, new_ingredients = make_chinese.chinese(res)
+			res['directions'] = new_directions
+			res['ingredients'] = new_ingredients
+
+
+			print("New Directions: {}".format(new_directions))
+			print("New Ingredients: {}".format(new_ingredients))
+			print()
 		
 		elif selection == 4:
 			new_ingredients, new_directions = lactose.remove_lactose(res)
