@@ -96,23 +96,20 @@ def print_parsed_recipe(parsed_res):
         print(x)
 
     print()
-    print(f"Methods \n{parsed_res['methods']}")
+
+    print(f"All Methods - {parsed_res['methods']}")
+    print(f"All Tools - {parsed_res['tools']}")
 
     print()
-    print(f"Tools \n{parsed_res['tools']}")
 
-    print()
     print('Steps')
     for i, step in enumerate(parsed_res['steps']):
         ingredients = ', '.join(step['ingredients']) if step['ingredients'] else None
         methods = ', '.join(step['methods']) if step['methods'] else None
         tools = ', '.join(step['tools']) if step['tools'] else None
         time = ', '.join(step['time']) if step['time'] else None
-        print(f"{i}) Text: {step['text']}")
-        print(f"   Ingredients: {ingredients}; Methods: {methods}; Tools: {tools}; Time: {time}")
-        # print(f"   Methods: {step['methods']}")
-        # print(f"   Tools: {step['tools']}")
-        # print(f"   Time: {step['time']}")
+        print(f"{i}) TEXT: {step['text']}")
+        print(f"   INGREDIENTS: {ingredients}; METHODS: {methods}; TOOLS: {tools}; TIME: {time}")
         print()
 
 
