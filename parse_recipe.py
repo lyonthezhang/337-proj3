@@ -126,7 +126,7 @@ def parse_one_ingredient(ingredient):
     for token in tokens:
         if any([str(digit) in token for digit in range(10)]) and not any([char in token for char in ['(', ')']]):
             fraction_obj = sum(map(fractions.Fraction, token.split()))
-            as_float = float(fraction_obj)
+            as_float = fraction_obj
             quantity += as_float
         elif any([token in x for x in ALL_MEASUREMENT_WORDS]) or any([char in token for char in ['(', ')']]):
             measurement += token + ' '

@@ -8,6 +8,9 @@ import vegetarian
 import make_italian
 import lactose
 import make_chinese
+import human_readable
+from get_spicy import get_spicy_recipe
+
 
 '''
 Driver script to run recipe parsing & transformation interaction with user.
@@ -38,7 +41,7 @@ def main(url):
 						#'DIY to easy (OPTIONAL)', 
 						'No Lactose (OPTIONAL)',
 						'Double the amount or cut it by half (OPTIONAL)', 
-						'Cooking method (OPTIONAL)']
+						'To SPICYY (OPTIONAL)']
 
 	num_transformations = len(TRANSFORMATIONS)
 	while True:
@@ -100,10 +103,12 @@ def main(url):
 		
 		elif selection == 4:
 			new_ingredients, new_directions = lactose.remove_lactose(res)
-			print("New Ingredients: {}".format(new_ingredients))
-			print("New Directions: {}".format(new_directions))
+			# print("New Ingredients: {}".format(new_ingredients))
+			# print("New Directions: {}".format(new_directions))
 			res['ingredients'] = new_ingredients
 			res['directions'] = new_directions
+			human_readable.print_ingredients(res)
+			human_readable.print_directions(res)
 			print()
 		
 		elif selection == 5:
@@ -115,8 +120,10 @@ def main(url):
 			res['ingredients'] = new_ingredients
 		
 		elif selection == 6:
-			x = cooking_method.change_cooking_method(res)
-
+			ing, dir = get_spicy_recipe(res)
+			print("SPICY VERSION: {}\n".format(res['name']))
+			print("New SPICY Ingredients:\n {} \n".format(ing))
+			print("New SPICY Directions:\n {} \n".format(dir))
 
 
 if __name__ == '__main__':
