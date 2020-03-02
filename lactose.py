@@ -1,19 +1,19 @@
 import fractions
 import parse_recipe
 
-LACTOSE_DICT = {'milk': 'soy milk [non-dairy]',
-				'butter': 'i cant believe its not butter [non-dairy]',
-				'parmesan': 'Daiya Parmesan Style Shreds [non-dairy]',
-				'cheddar': 'Daiya Cheddar Style Shreds [Vegan]',
-				'mozzarella': 'Daiya Mozzarella Style Shreds [Vegan]',
-				'cottage cheese': 'Daiya Cottage Cheese Style Shreds [Vegan]',
-				'ricotta': 'Daiya Ricotta [Vegan]',
-				'cheese': 'Daiya Mozzarella Style Shreds [non-dairy]',
+LACTOSE_DICT = {'milk ': 'soy milk [non-dairy]',
+				'butter ': 'i cant believe its not butter-substitute [non-dairy]',
+				'parmesan ': 'Daiya Parmesan-Style Shreds [non-dairy]',
+				'cheddar ': 'Daiya Cheddar-Style Shreds [Vegan]',
+				'mozzarella ': 'Daiya-Mozzarella-Style Shreds [Vegan]',
+				'cottage cheese': 'Daiya Cottage Cheese-Style Shreds [Vegan]',
+				'ricotta ': 'Daiya Ricotta-Style Chunks [Vegan]',
+				'cheese ': 'Daiya Mozzarella-Style Shreds [non-dairy]',
 				'egg white': 'mung bean egg white paste [non-dairy]',
-				'egg': 'mung bean egg paste [non-dairy]',
-				'sour cream': 'coconut milk [non-dairy]',
-				'greek yogurt': 'Chobani Non-Dairy Coconut-Based Greek Yogurt [non-dairy]',
-				'yogurt': 'Forager Project Organic Dairy-Free Cashewgurt [non-dairy]'}
+				'egg ': 'mung bean egg-substitute paste [non-dairy]',
+				'sour cream ': 'coconut milk-substitute [non-dairy]',
+				'greek yogurt ': 'Chobani Non-Dairy Coconut-Based Greek-Yogurt [non-dairy]',
+				'yogurt ': 'Forager Project Organic Dairy-Free Cashewgurt [non-dairy]'}
 
 def remove_lactose(res):
 
