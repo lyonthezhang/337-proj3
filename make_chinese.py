@@ -22,6 +22,7 @@ non_chinese_lipids = ['butter','olive oil','coconut oil','avocado oil','canola o
 non_chinese_peppers = ['jalapeno','habanero','chipotle']
 non_chinese_noodles = ['spaghetti noodle','fettuccine noodle','fettuccini noodle','capellini noodle','angel hair noodle','tagliatelle noodle','linguine noodle']
 non_chinese_grains = ['penne','orzo','farfelle','macaroni','rotini','rigatoni','gnocchi']
+non_chinese_vinegar = ['balsamic vinegar','red wine vinegar','sherry vinegar','apple cider vinegar']
 
 # create dictionary
 chinese_dict = dict.fromkeys(non_chinese_sauces[:4], 'soy sauce')
@@ -34,8 +35,7 @@ chinese_dict['refried beans'] = 'soybeans'
 chinese_dict['chive'] = 'chinese chive'
 chinese_dict['basil'] = 'thai basil'
 chinese_dict['bison'] = 'beef'
-chinese_dict['sausage'] = 'chinese sausage'
-chinese_dict['vinegar'] = 'rice vinegar'
+chinese_dict.update(dict.fromkeys(non_chinese_vinegar[:], 'rice vinegar'))
 chinese_dict.update(dict.fromkeys(non_chinese_grains[:], 'white rice'))
 chinese_dict.update(dict.fromkeys(non_chinese_noodles[:], 'wheat noodle'))
 chinese_dict.update(dict.fromkeys(non_chinese_peppers[:], 'chili'))
