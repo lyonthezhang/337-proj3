@@ -84,7 +84,6 @@ def replace_meat(ingredients, meat, type_of_meat_lst, first):
 
     # ground meat replacement
     if type_of_meat_lst[0]:
-        print("replace ground")
         replace_term = meat_lst[replace_idx: ]
         s = " "
         term = s.join(replace_term)
@@ -223,7 +222,7 @@ def look_for_meat(ingredients, name):
             new_ingredient = '1 pound chicken breast'
         elif category is 'ground':
             new_ingredient = '1 pound ground beef'
-        elif category is 'burger':
+        elif category is burger:
             new_ingredient = '1 pound ground beef'
         else:
             new_ingredient = '1 pound chicken breast'
@@ -352,7 +351,6 @@ def get_veggie_pasta(directions, ingredients):
 
         #if any(meat_lst) in words:
         if any(word in words for word in meat_lst):
-            print("meaty")
             directions[n] = new_dir
             add_meat = False
 
@@ -408,7 +406,6 @@ def get_veggie_main(directions, ingredients):
 
 # get new direction to make ground veggie
 def get_veggie_ground(directions, ingredients):
-    print("getting ground veggie directions")
     for n, step in enumerate(directions):
         step = step.replace(".", "")
         step = step.replace(",", "")
