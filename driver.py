@@ -1,6 +1,7 @@
 import sys
 import web_scraping
 import multiply_recipe
+from healthify import healthify, unhealthify
 
 '''
 Driver script to run recipe parsing & transformation interaction with user.
@@ -51,7 +52,16 @@ def main(url):
 			pass
 		
 		elif selection == 1:
-			pass
+			health_or_not = input('Would you like to go TO or FROM healthy? (TO/FROM): ')
+			if health_or_not == 'TO':
+				new_dir, new_ing = healthify(res)
+			else:
+				new_dir, new_ing = unhealthify(res)
+
+			print('\nNew Ingredients List:\n', new_ing, '\n')
+			print('New Directions:\n', new_dir, '\n')
+			res['ingredients'] = new_ing
+			res['directions'] = new_dir
 		
 		elif selection == 2:
 			pass
