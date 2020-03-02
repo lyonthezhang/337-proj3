@@ -2,6 +2,9 @@ import sys
 import web_scraping
 import multiply_recipe
 import parse_recipe
+import cooking_method
+import vegetarian
+import make_italian
 
 '''
 Driver script to run recipe parsing & transformation interaction with user.
@@ -50,13 +53,28 @@ def main(url):
 
 		# execute user-selected transformation
 		if selection == 0:
-			pass
+			new_ingredients, new_directions = vegetarian.turn_meat_to_veggie(res)
+
+			res['directions'] = new_directions
+			res['ingredients'] = new_ingredients
+
+			print(res['name'])
+			print("\n New Directions: {} \n".format(new_directions))
+			print("New Ingredients: {}".format(new_ingredients))
+			print()
 		
 		elif selection == 1:
 			pass
 		
 		elif selection == 2:
-			pass
+			new_directions, new_ingredients = make_italian.italian(res)
+			res['directions'] = new_directions
+			res['ingredients'] = new_ingredients
+
+
+			print("New Directions: {}".format(new_directions))
+			print("New Ingredients: {}".format(new_ingredients))
+			print()
 		
 		elif selection == 3:
 			pass
