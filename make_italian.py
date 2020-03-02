@@ -93,8 +93,6 @@ def italian(recipe):
             if sub_ing in base_ing:
                 if sub_ing is 'beef':
                     corn = check_corn_beef(base_ing)
-                    print(base_ing)
-                    print(corn)
                 if corn == 1:
                     ingredients[i] = ingredients[i].replace('corn beef', italian_dict[sub_ing])
                     break
@@ -123,4 +121,4 @@ def italian(recipe):
             directions[i] = check_sauce(directions[i])
         i += 1
 
-    return directions, recipe
+    return directions, ingredients
