@@ -222,7 +222,7 @@ def look_for_meat(ingredients, name):
             new_ingredient = '1 pound chicken breast'
         elif category is 'ground':
             new_ingredient = '1 pound ground beef'
-        elif category is burger:
+        elif category is 'burger':
             new_ingredient = '1 pound ground beef'
         else:
             new_ingredient = '1 pound chicken breast'
