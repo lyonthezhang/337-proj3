@@ -68,9 +68,13 @@ def main(url):
 			res['directions'] = new_directions
 			res['ingredients'] = new_ingredients
 			print(res['name'])
-			human_readable.print_ingredients(res, title='VEGETARIAN INGREDIENTS')
-			human_readable.print_directions(res, title='VEGETARIAN DIRECTIONS')
-		
+			if 'Vegetarian Version' in res['name']:
+				human_readable.print_ingredients(res, title='VEGETARIAN INGREDIENTS')
+				human_readable.print_directions(res, title='VEGETARIAN DIRECTIONS')
+			else:
+				human_readable.print_ingredients(res, title='NON-VEGETARIAN INGREDIENTS')
+				human_readable.print_directions(res, title='NON-VEGETARIAN DIRECTIONS')	
+				
 		elif selection == 1:
 			health_or_not = input('Would you like to go TO or FROM healthy? (TO/FROM): ')
 			if health_or_not == 'TO':
