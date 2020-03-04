@@ -10,6 +10,7 @@ import make_chinese
 import human_readable
 from get_spicy import get_spicy_recipe
 import vegan
+import nonut
 
 
 '''
@@ -45,7 +46,8 @@ def main(url):
 						'No Lactose (OPTIONAL)',
 						'Double the amount or cut it by half (OPTIONAL)', 
 						'To SPICYY (OPTIONAL)',
-						'To and from vegan (OPTIONAL)']
+						'To and from vegan (OPTIONAL)',
+						'Go nutless (OPTIONAL)']
 
 	print()
 	num_transformations = len(TRANSFORMATIONS)
@@ -138,7 +140,15 @@ def main(url):
 				human_readable.print_directions(res, title='VEGAN DIRECTIONS')
 			else:
 				human_readable.print_ingredients(res, title='NON-VEGAN INGREDIENTS')
-				human_readable.print_directions(res, title='NON-VEGAN DIRECTIONS')	
+				human_readable.print_directions(res, title='NON-VEGAN DIRECTIONS')
+
+		elif selection == 8:
+			new_ingredients, new_directions = nonut.nonut(res)
+			res['ingredients'] = new_ingredients
+			res['directions'] = new_directions
+			print("NUTLESS VERSION: {}\n".format(res['name']))
+			human_readable.print_ingredients(res, title='NEW NUTLESS INGREDIENTS')
+			human_readable.print_directions(res, title='NEW NUTLESS DIRECTIONS')	
 
 
 if __name__ == '__main__':
