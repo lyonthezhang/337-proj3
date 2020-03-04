@@ -649,8 +649,7 @@ def dish_has_meat(ingredients):
     meat_lst = ['hamburger', 'cheeseburger', 'corned beef', 'sloppy joe', 'chicken', \
                 'steak', 'beef', 'lamb', 'bacon', 'pork', 'duck', 'bison', 'rabbit', \
                 'cow', 'sausage', 'turkey', 'salmon', 'cod', 'fish', 'halibut',\
-                'shellfish', 'crab', 'lobster', 'shrimp', 'prawn', 'scallop',\
-                'egg','cheese','ice cream','milk','honey']
+                'shellfish', 'crab', 'lobster', 'shrimp', 'prawn', 'scallop']
 
     for i in ingredients:
         words = i.lower().split()

@@ -9,6 +9,7 @@ import lactose
 import make_chinese
 import human_readable
 from get_spicy import get_spicy_recipe
+import vegan
 
 
 '''
@@ -43,7 +44,8 @@ def main(url):
 						'To Chinese (OPTIONAL)', 
 						'No Lactose (OPTIONAL)',
 						'Double the amount or cut it by half (OPTIONAL)', 
-						'To SPICYY (OPTIONAL)']
+						'To SPICYY (OPTIONAL)',
+						'To and from vegan (OPTIONAL)']
 
 	print()
 	num_transformations = len(TRANSFORMATIONS)
@@ -125,6 +127,18 @@ def main(url):
 			print("SPICY VERSION: {}\n".format(res['name']))
 			human_readable.print_ingredients(res, title='NEW SPICY INGREDIENTS')
 			human_readable.print_directions(res, title='NEW SPICY DIRECTIONS')
+
+		elif selection == 7:
+			new_ingredients, new_directions = vegan.turn_meat_to_veggie(res)
+			res['directions'] = new_directions
+			res['ingredients'] = new_ingredients
+			print(res['name'])
+			if 'Vegan Version' in res['name']:
+				human_readable.print_ingredients(res, title='VEGAN INGREDIENTS')
+				human_readable.print_directions(res, title='VEGAN DIRECTIONS')
+			else:
+				human_readable.print_ingredients(res, title='NON-VEGAN INGREDIENTS')
+				human_readable.print_directions(res, title='NON-VEGAN DIRECTIONS')	
 
 
 if __name__ == '__main__':
