@@ -10,6 +10,7 @@ import make_chinese
 import human_readable
 from get_spicy import get_spicy_recipe
 import vegan
+import copy
 
 
 '''
@@ -27,6 +28,7 @@ def main(url):
 	# Scrape recipe at user-provided url
 	rf = web_scraping.RecipeFetcher()
 	res = rf.scrape_recipe(url)
+	original_res = copy.deepcopy(res)
 
 	# Parse and print the result from the web scraper
 	print('************* PARSED RECIPE FORMAT *************')
@@ -34,8 +36,8 @@ def main(url):
 	parse_recipe.print_parsed_recipe(parsed_res)
 
 	print('************* HUMAN READABLE FORMAT *************')
-	human_readable.print_ingredients(res, title='INGREDIENTS')
-	human_readable.print_directions(res, title='DIRECTIONS')
+	human_readable.print_ingredients(res, title='ORIGINAL INGREDIENTS')
+	human_readable.print_directions(res, title='ORIGINAL DIRECTIONS')
 
 	# ask user to select a transformation
 	TRANSFORMATIONS = ['To and from vegetarian (REQUIRED)',
@@ -45,7 +47,9 @@ def main(url):
 						'No Lactose (OPTIONAL)',
 						'Double the amount or cut it by half (OPTIONAL)', 
 						'To SPICYY (OPTIONAL)',
-						'To and from vegan (OPTIONAL)']
+						'To and from vegan (OPTIONAL)',
+						'View Nutrition',
+						'Reset to Original Recipe']
 
 	print()
 	num_transformations = len(TRANSFORMATIONS)
@@ -139,6 +143,15 @@ def main(url):
 			else:
 				human_readable.print_ingredients(res, title='NON-VEGAN INGREDIENTS')
 				human_readable.print_directions(res, title='NON-VEGAN DIRECTIONS')	
+
+		elif selection == 8:
+			# print(res)
+			human_readable.print_nutrition(res, title='NUTRITION')
+
+		elif selection == 9:
+			res = copy.deepcopy(original_res)
+			human_readable.print_ingredients(res, title='ORIGINAL INGREDIENTS')
+			human_readable.print_directions(res, title='ORIGINAL DIRECTIONS')
 
 
 if __name__ == '__main__':
