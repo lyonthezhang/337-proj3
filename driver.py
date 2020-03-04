@@ -31,13 +31,14 @@ def main(url):
 	original_res = copy.deepcopy(res)
 
 	# Parse and print the result from the web scraper
-	print('************* PARSED RECIPE FORMAT *************')
+	print('***************** PARSED RECIPE FORMAT *****************')
 	parsed_res = parse_recipe.parse_recipe(res)
 	parse_recipe.print_parsed_recipe(parsed_res)
 
-	print('************* HUMAN READABLE FORMAT *************')
+	print('***************** HUMAN READABLE FORMAT *****************')
 	human_readable.print_ingredients(res, title='ORIGINAL INGREDIENTS')
 	human_readable.print_directions(res, title='ORIGINAL DIRECTIONS')
+	human_readable.print_nutrition(res, title='ORIGINAL NUTRITION')
 
 	# ask user to select a transformation
 	TRANSFORMATIONS = ['To and from vegetarian (REQUIRED)',
@@ -46,7 +47,7 @@ def main(url):
 						'To Chinese (OPTIONAL)', 
 						'No Lactose (OPTIONAL)',
 						'Double the amount or cut it by half (OPTIONAL)', 
-						'To SPICYY (OPTIONAL)',
+						'More SPICYY (OPTIONAL)',
 						'To and from vegan (OPTIONAL)',
 						'Go nutless (OPTIONAL)',
 						'View Nutrition',
