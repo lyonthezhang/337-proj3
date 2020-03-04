@@ -11,7 +11,7 @@ import human_readable
 from get_spicy import get_spicy_recipe
 import vegan
 import copy
-
+import nonut
 
 '''
 Driver script to run recipe parsing & transformation interaction with user.
@@ -48,6 +48,7 @@ def main(url):
 						'Double the amount or cut it by half (OPTIONAL)', 
 						'To SPICYY (OPTIONAL)',
 						'To and from vegan (OPTIONAL)',
+						'Go nutless (OPTIONAL)',
 						'View Nutrition',
 						'Reset to Original Recipe']
 
@@ -142,13 +143,22 @@ def main(url):
 				human_readable.print_directions(res, title='VEGAN DIRECTIONS')
 			else:
 				human_readable.print_ingredients(res, title='NON-VEGAN INGREDIENTS')
-				human_readable.print_directions(res, title='NON-VEGAN DIRECTIONS')	
+				human_readable.print_directions(res, title='NON-VEGAN DIRECTIONS')
 
 		elif selection == 8:
-			# print(res)
-			human_readable.print_nutrition(res, title='NUTRITION')
+			new_ingredients, new_directions = nonut.nonut(res)
+			res['ingredients'] = new_ingredients
+			res['directions'] = new_directions
+			print("NUTLESS VERSION: {}\n".format(res['name']))
+			human_readable.print_ingredients(res, title='NEW NUTLESS INGREDIENTS')
+			human_readable.print_directions(res, title='NEW NUTLESS DIRECTIONS')	
 
 		elif selection == 9:
+			# Print Nutrition
+			human_readable.print_nutrition(res, title='NUTRITION')
+
+		elif selection == 10:
+			# Reset to original res
 			res = copy.deepcopy(original_res)
 			human_readable.print_ingredients(res, title='ORIGINAL INGREDIENTS')
 			human_readable.print_directions(res, title='ORIGINAL DIRECTIONS')
