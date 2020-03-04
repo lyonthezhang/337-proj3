@@ -214,17 +214,7 @@ def look_for_meat(ingredients, name):
             vegan_recipe = False
             continue
 
-    if vegan:
-        category = get_category_recipe(name)
-        if category is 'pasta':
-            new_ingredient = '1 pound chicken breast'
-        elif category is 'ground':
-            new_ingredient = '1 pound ground beef'
-        elif category is 'burger':
-            new_ingredient = '1 pound ground beef'
-        else:
-            new_ingredient = '1 pound chicken breast'
-        ingredients.append(new_ingredient)
+    vegan_recipe = False
 
     return ingredients, vegan_recipe
 
@@ -640,6 +630,57 @@ def get_meat_soup(directions, ingredients):
 
     return directions
 
+"""
+
+define vegan substitutes
+
+"""
+# create dictionary
+vegan_dict = dict()
+vegan_dict['dairy'] = 'coconut milk'
+vegan_dict['milk'] = 'coconut milk'
+vegan_dict['eggs'] = 'JUST-egg (vegan egg-replacement)'
+vegan_dict['egg'] = 'JUST-egg (vegan egg-replacement)'
+vegan_dict['butter'] = 'coconut butter'
+vegan_dict['yogurt'] = 'coconut yogurt'
+vegan_dict['mozzarella'] = 'cashew cheese'
+vegan_dict['parmesan'] = 'cashew cheese'
+vegan_dict['ice cream'] = 'coconut ice cream'
+vegan_dict['whip cream'] = 'coconut whip cream'
+vegan_dict['cottage cheese'] = 'coconut yogurt'
+vegan_dict['sour cream'] = 'coconut yogurt'
+vegan_dict['chocolate'] = 'vegan chocolate'
+
+"""
+
+make recipe vegan
+
+"""
+
+def turn_veggie_to_vegan(recipe):
+    directions = recipe['directions']
+    ingredients = recipe['ingredients']
+    sub_keys = vegan_dict.keys()
+
+    i = 0
+    for base_ing in ingredients:
+        base_ing = base_ing.lower()
+        for sub_ing in sub_keys:
+            if sub_ing in base_ing:
+                ingredients[i] = ingredients[i].lower().replace(sub_ing, vegan_dict[sub_ing])
+        i += 1
+
+    i = 0
+    for step in directions:
+        step = step.lower()
+        for sub_ing in sub_keys:
+            s = step.lower().replace(".", "")
+            if sub_ing in s:
+                directions[i] = directions[i].lower().replace(sub_ing, vegan_dict[sub_ing])
+        i += 1
+
+    return directions, ingredients
+
 
 """
 run functions
@@ -672,10 +713,15 @@ def turn_meat_to_veggie(res):
     # change ingredients
     new_ingredients, veggie_recipe = look_for_meat(old_ingredients, name)
 
-    if not veggie_recipe:
-        res['name'] = name + " - Vegan Version"
-    else:
-        if " - Vegan Version" in name:
-            res['name'] = name.replace(" - Vegan Version", "")
-
     return new_ingredients, new_directions
+
+def run_vegan(res):
+    veggie_ing, veggie_dir = turn_meat_to_veggie(res)
+
+    res['ingredients'] = veggie_ing
+    res['directions'] = veggie_dir
+    res['name'] = res['name'] + " - Vegan Version"
+
+    vegan_dir, vegan_ing = turn_veggie_to_vegan(res)
+
+    return vegan_ing, vegan_dir
