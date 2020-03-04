@@ -15,6 +15,8 @@ We wrote separate python files for each function called in driver.py. We use web
 - Double the Amount of Cut it By Half
 - Make Recipe Lactose-Free
 - Make Recipe Spicy
+- Make Vegan
+- Remove Nuts (for allergies!)
 
 ### How to Run
 1. Download and unzip folder.
