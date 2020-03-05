@@ -12,6 +12,7 @@ from get_spicy import get_spicy_recipe
 import vegan
 import copy
 import nonut
+import seafood
 
 '''
 Driver script to run recipe parsing & transformation interaction with user.
@@ -50,8 +51,9 @@ def main(url):
 						'More SPICYY (OPTIONAL)',
 						'To vegan (OPTIONAL)',
 						'Go nutless (OPTIONAL)',
-						'View Nutrition',
-						'Reset to Original Recipe']
+						'Seafood Allergy - remove seafood (OPTIONAL)',
+						'View Nutrition (OPTIONAL)',
+						'Reset to Original Recipe (OPTIONAL)']
 
 	print()
 	num_transformations = len(TRANSFORMATIONS)
@@ -155,10 +157,17 @@ def main(url):
 			human_readable.print_directions(res, title='NEW NUTLESS DIRECTIONS')	
 
 		elif selection == 9:
+			new_ingredients, new_directions = seafood.remove_seafood(res)
+			res['ingredients'] = new_ingredients
+			res['directions'] = new_directions
+			human_readable.print_ingredients(res, title='NO SEAFOOD INGREDIENTS')
+			human_readable.print_directions(res, title='NO SEAFOOD DIRECTIONS')
+
+		elif selection == 10:
 			# Print Nutrition
 			human_readable.print_nutrition(res, title='NUTRITION')
 
-		elif selection == 10:
+		elif selection == 11:
 			# Reset to original res
 			res = copy.deepcopy(original_res)
 			human_readable.print_ingredients(res, title='ORIGINAL INGREDIENTS')
