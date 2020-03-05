@@ -17,6 +17,7 @@ We wrote separate python files for each function called in driver.py. We use web
 - Make Recipe Spicy
 - Make Vegan
 - Remove Nuts (for allergies!)
+- Print Nutrition Info
 
 ### How to Run
 1. Download and unzip folder.
