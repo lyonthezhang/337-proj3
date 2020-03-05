@@ -48,7 +48,7 @@ def main(url):
 						'No Lactose (OPTIONAL)',
 						'Double the amount or cut it by half (OPTIONAL)', 
 						'More SPICYY (OPTIONAL)',
-						'To and from vegan (OPTIONAL)',
+						'To vegan (OPTIONAL)',
 						'Go nutless (OPTIONAL)',
 						'View Nutrition',
 						'Reset to Original Recipe']
@@ -135,7 +135,7 @@ def main(url):
 			human_readable.print_directions(res, title='NEW SPICY DIRECTIONS')
 
 		elif selection == 7:
-			new_ingredients, new_directions = vegan.turn_meat_to_veggie(res)
+			new_ingredients, new_directions = vegan.run_vegan(res)
 			res['directions'] = new_directions
 			res['ingredients'] = new_ingredients
 			print(res['name'])
