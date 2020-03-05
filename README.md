@@ -17,13 +17,14 @@ We wrote separate python files for each function called in driver.py. We use web
 - Make Recipe Spicy
 - Make Vegan
 - Remove Nuts (for allergies!)
-- Print Nutrition Info
+- Seafood allergy - remove seafood
+- Print Parsed Nutrition Info
 
 ### How to Run
 1. Download and unzip folder.
 2. Make sure you have set up a conda environment and it is running.
 3. Pick a url of recipe to transform from 'allrecipes.com', or use the default setting. Note that only recipes WITHOUT the 'explore' tag in the upper left of the webpage will work.
-4. Run `python driver.py <url>` to get the information about the different kinds of transformations.
+4. Run `python driver.py <'url'>` ('url' as a string in quotations) to get the information about the different kinds of transformations.
 5. Pick you transformation using command line!
 
 ### Python Libraries Imported:
@@ -32,6 +33,7 @@ We wrote separate python files for each function called in driver.py. We use web
 - import re
 - import sys
 - import fractions
+- import copy
 
 ### Websites Used for Reference:
 - https://www.allrecipes.com/

@@ -52,7 +52,7 @@ def main(url):
 						'To vegan (OPTIONAL)',
 						'Go nutless (OPTIONAL)',
 						'Seafood Allergy - remove seafood (OPTIONAL)',
-						'View Nutrition (OPTIONAL)',
+						'View Parsed Nutrition (OPTIONAL)',
 						'Reset to Original Recipe (OPTIONAL)']
 
 	print()
