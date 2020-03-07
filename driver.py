@@ -1,13 +1,15 @@
 import sys
 import web_scraping
+import parse_recipe
+import human_readable
+
+sys.path.insert(1, './transformations')
 import multiply_recipe
 from healthify import healthify, unhealthify
-import parse_recipe
 import vegetarian
 import make_italian
 import lactose
 import make_chinese
-import human_readable
 from get_spicy import get_spicy_recipe
 import vegan
 import copy
