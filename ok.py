@@ -21,21 +21,24 @@ def directionNavigator(userinput):
 	global res_index
 
 	if 'next' in userinput or 'forward' in userinput:
-		print(res['directions'][res_index])
+		print('\nOKBot: {}'.format(res['directions'][res_index]))
 		res_index += 1
 		if res_index >= len(res['directions']):
 			print('\nOkBot: No more steps buddy. COngrats')
 			res_index = 0
 
 	if 'back' in userinput or 'previous' in userinput:
-		print(res['directions'][res_index])
+		print('\nOKBot: {}'.format(res['directions'][res_index]))
 		res_index -= 1
 		if res_index < 0:
 			print('\nOkBot: That was the first step again.')
 			res_index = 0
 
 	if 'repeat' in userinput or 'again' in userinput:
-		print(res['directions'][res_index])
+		print('\nOKBot: ' + res['directions'][res_index])
+
+	if 'what' in userinput and 'directions' in userinput:
+		print('\nOKBot: Here are the directions:\n{}'.format(res['directions']))
 
 	# print('\nOkBot: Here are the directions:\n')
 	# human_readable.print_directions(res, title='')
@@ -46,12 +49,12 @@ def parseInput(userinput):
 	userinput = userinput.lower()
 
 	# ingredients retrieval
-	if 'ingredient' in userinput:# and any([x in userinput for x in retrieval_keywords]):
+	if 'ingredient' in userinput or 'ingredients' in userinput:# and any([x in userinput for x in retrieval_keywords]):
 		print('\nOkBot: Here is the ingredients list:\n')
 		human_readable.print_ingredients(res, title='')
 		return
 
-	if ('direction' in userinput or 'step' in userinput):# and any([x in userinput for x in retrieval_keywords]):
+	if ('direction' in userinput or 'step' in userinput or 'directions' in userinput or 'steps' in userinput):# and any([x in userinput for x in retrieval_keywords]):
 		# print('\nOkBot: Here are the directions:\n')
 		# human_readable.print_directions(res, title='')
 		directionNavigator(userinput)
@@ -64,7 +67,7 @@ def parseInput(userinput):
 		if any([x in userinput for x in objects]):
 			search_base_url = 'https://www.youtube.com/results?search_query=%s'
 			search_url = search_base_url % (userinput.replace(' ','+'))
-			print(search_url)
+			print('\n' + search_url)
 		return
 
 	# 'what is' questions
@@ -73,13 +76,13 @@ def parseInput(userinput):
 		if any([x in userinput for x in objects]):
 			search_base_url = 'https://www.google.com/search?q=%s'
 			search_url = search_base_url % (userinput.replace(' ','+'))
-			print(search_url)
+			print('\n' + search_url)
 		return
 
 
 print("\nOkBot: Hello. I am OkBot. How are you? Please ask me to walk you through a recipe.\n")
 userinput = input("User: ")
-if 'recipe' in userinput:
+if 'recipe' or 'cook'  or 'recipes' in userinput:
 	print("\nOkBot: Sure thing chicken wing! Please specify a URL.\n")
 else:
 	print("\nOkBot: I know you didn't ask, but please specify a URL for a recipe anyways. Please don't mess around with me, I'm primitive :)\n")
@@ -96,16 +99,10 @@ while True:
 		print("OkBot: Sorry, my scraper says that's invalid. Someone should fire my developers. Please try another URL.\n")
 		userinput = input("User: ")
 
-print("OkBot: Awesome-sauce'em-possum!! Let's proceed with the recipe " + res['name'] + "! What would you like to do with this? You can go over ingredients list or go over recipe steps, or anything else your pure heart desires.\n")
+print("OkBot: Awesome-sauce'em-possum!! Let's proceed with the recipe " + res['name'] + "! What would you like to do with this? You can go over ingredients list or go over recipe steps, or anything else your pure heart desires.")
 res_index = 0
 
 while True:
 	print("\nOkBot: So what can this humble bot do for you?\n")
 	userinput = input("User: ")
 	parseInput(userinput)
-
-
-
-
-
-
