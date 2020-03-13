@@ -16,6 +16,12 @@ https://www.allrecipes.com/recipe/8039/bee-sting-cake-bienenstich-ii/
 expletives = ['fart']
 retrieval_keywords = ['show','get','display','let me see','gimme','give']
 
+def remove_punctuation(text):
+	text = text.replace(",", "")
+	text = text.replace(".", "")
+	text = text.replace("-", "")
+	return text
+
 def directionNavigator(userinput):
 	global res
 	global res_index
@@ -38,7 +44,11 @@ def directionNavigator(userinput):
 		print('\nOKBot: ' + res['directions'][res_index])
 
 	if 'what' in userinput and 'directions' in userinput:
-		print('\nOKBot: Here are the directions:\n{}'.format(res['directions']))
+		dir = res['directions']
+
+		print('\nOKBot: Here are the directions:\n')
+		for i in range(len(dir)):
+			print("Step {}: {}".format(i + 1, dir[i]))
 
 	# print('\nOkBot: Here are the directions:\n')
 	# human_readable.print_directions(res, title='')
@@ -46,10 +56,16 @@ def directionNavigator(userinput):
 def parseInput(userinput):
 	global res
 
-	userinput = userinput.lower()
+	parsed_res = parse_recipe.parse_recipe(res)
+	userinput = remove_punctuation(userinput.lower())
+
+	ingredients = [x['name'] for x in parsed_res['ingredients']]
+	parsed_ingredients = list(map(remove_punctuation, ingredients))
+	parsed_ingredients = [x.split() for x in parsed_ingredients]
+	ingredients_lst = [item for sublist in parsed_ingredients for item in sublist]
 
 	# ingredients retrieval
-	if 'ingredient' in userinput or 'ingredients' in userinput:# and any([x in userinput for x in retrieval_keywords]):
+	if 'ingredient' in userinput or 'ingredients' in userinput: # and any([x in userinput for x in retrieval_keywords]):
 		print('\nOkBot: Here is the ingredients list:\n')
 		human_readable.print_ingredients(res, title='')
 		return
@@ -72,7 +88,9 @@ def parseInput(userinput):
 
 	# 'what is' questions
 	if 'what' in userinput:
-		objects = parsed_res['tools'] + parsed_res['methods'] + [x['name'] for x in parsed_res['ingredients']]
+		objects = parsed_res['tools'] + parsed_res['methods'] + ingredients_lst
+
+		#[x['name'] for x in parsed_res['ingredients']]
 		if any([x in userinput for x in objects]):
 			search_base_url = 'https://www.google.com/search?q=%s'
 			search_url = search_base_url % (userinput.replace(' ','+'))
