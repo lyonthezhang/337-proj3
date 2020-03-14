@@ -13,8 +13,11 @@ lmao = '''
 https://www.allrecipes.com/recipe/8039/bee-sting-cake-bienenstich-ii/
 '''
 
-expletives = ['fart']
+expletives = ['fart','darn','heck','shut up','stupid','poop']
 retrieval_keywords = ['show','get','display','let me see','gimme','give']
+enumerations = ['first','second','third','fourth','fifth','sixth','seventh','eighth','ninth','tenth','eleventh','twelfth']
+negation = 'to last'
+
 
 def remove_punctuation(text):
 	text = text.replace(",", "")
@@ -25,23 +28,43 @@ def remove_punctuation(text):
 def directionNavigator(userinput):
 	global res
 	global res_index
+	global enumerations
+	global negation
+
+	counter = 0
+	for word in enumerations:
+		if word in userinput:
+			if negation in userinput:
+				res_index = len(res['directions']) - 1 - counter
+			else:
+				res_index = counter
+			print('\nOKBot: {}'.format(res['directions'][res_index]))
+			return
+		counter += 1
+		if counter == len(res['directions']):
+			break
 
 	if 'next' in userinput or 'forward' in userinput:
-		print('\nOKBot: {}'.format(res['directions'][res_index]))
-		res_index += 1
 		if res_index >= len(res['directions']):
-			print('\nOkBot: No more steps buddy. COngrats')
+			print('\nOkBot: No more steps buddy. Congrats!')
 			res_index = 0
+			return
+		res_index += 1
+		print('\nOKBot: {}'.format(res['directions'][res_index]))
+		return
 
 	if 'back' in userinput or 'previous' in userinput:
-		print('\nOKBot: {}'.format(res['directions'][res_index]))
-		res_index -= 1
-		if res_index < 0:
-			print('\nOkBot: That was the first step again.')
+		if res_index <= 0:
+			print('\nOkBot: Cannot go before the first step, sadly.')
 			res_index = 0
+			return
+		res_index -= 1
+		print('\nOKBot: {}'.format(res['directions'][res_index]))
+		return
 
 	if 'repeat' in userinput or 'again' in userinput:
 		print('\nOKBot: ' + res['directions'][res_index])
+		return
 
 	if 'what' in userinput and 'directions' in userinput:
 		dir = res['directions']
@@ -49,6 +72,7 @@ def directionNavigator(userinput):
 		print('\nOKBot: Here are the directions:\n')
 		for i in range(len(dir)):
 			print("Step {}: {}".format(i + 1, dir[i]))
+		return
 
 	# print('\nOkBot: Here are the directions:\n')
 	# human_readable.print_directions(res, title='')
@@ -65,6 +89,10 @@ def parseInput(userinput):
 	ingredients_lst = [item for sublist in parsed_ingredients for item in sublist]
 
 	# ingredients retrieval
+	for word in expletives:
+		if word in userinput:
+			print("\nOkBot: Please don't say bad words, I was born recently and am legally still a child.\n")
+
 	if 'ingredient' in userinput or 'ingredients' in userinput: # and any([x in userinput for x in retrieval_keywords]):
 		print('\nOkBot: Here is the ingredients list:\n')
 		human_readable.print_ingredients(res, title='')
@@ -118,7 +146,7 @@ while True:
 		userinput = input("User: ")
 
 print("OkBot: Awesome-sauce'em-possum!! Let's proceed with the recipe " + res['name'] + "! What would you like to do with this? You can go over ingredients list or go over recipe steps, or anything else your pure heart desires.")
-res_index = 0
+res_index = -1
 
 while True:
 	print("\nOkBot: So what can this humble bot do for you?\n")
