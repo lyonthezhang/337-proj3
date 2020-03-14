@@ -7,5 +7,5 @@ def testme():
 
 	html = requests.get(recipe)
 	response = "DUMMY: "
-	page_graph = BeautifulSoup(page_html.content, features="lxml")
+	# page_graph = BeautifulSoup(page_html.content, features="lxml")
 	return response# + str(page_graph)
