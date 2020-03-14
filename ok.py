@@ -120,7 +120,12 @@ def parseInput(userinput):
 	ingredients = [x['name'] for x in parsed_res['ingredients']]
 	parsed_ingredients = list(map(remove_punctuation, ingredients))
 	parsed_ingredients = [x.split() for x in parsed_ingredients]
-	ingredients_lst = [item for sublist in parsed_ingredients for item in sublist]
+	ingredients_lst = [item.lower() for sublist in parsed_ingredients for item in sublist]
+
+	# end program
+	if 'goodbye' in userinput or 'bye' in userinput or 'end' in userinput:
+		print('\nOkbot: Goodbye!! Program is now ending...hope to talk to you soon!\n')
+		sys.exit()
 
 	# ingredients retrieval
 	for word in expletives:
@@ -165,6 +170,7 @@ def parseInput(userinput):
 		return
 
 	print("\nOkBot:Hmm, I'm sorry, but it seems I'm not smart enough to handle that. Please try asking me something else!\n")
+
 
 
 print("\nOkBot: Hello. I am OkBot. How are you? Please ask me to walk you through a recipe.\n")
