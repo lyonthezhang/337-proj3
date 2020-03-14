@@ -16,7 +16,7 @@ class RecipeFetcher:
         search_url = self.search_base_url %(keywords.replace(' ','+'))
 
         page_html = requests.get(search_url)
-        page_graph = BeautifulSoup(page_html.content, features="lxml")
+        page_graph = BeautifulSoup(page_html.content.decode('utf-8'), features="lxml")
 
         return [recipe.a['href'] for recipe in page_graph.find_all('div', {'class':'grid-card-image-container'})]
 
@@ -24,7 +24,7 @@ class RecipeFetcher:
         results = {}
 
         page_html = requests.get(recipe_url)
-        page_graph = BeautifulSoup(page_html.content, features="lxml")
+        page_graph = BeautifulSoup(page_html.content.decode('utf-8'), features="lxml")
 
         find_name = [name.text for name in\
                           page_graph.find_all('h1', {'id': 'recipe-main-content'}, {'class': 'recipe-summary__h1'})]
@@ -46,7 +46,7 @@ class RecipeFetcher:
         nutrition_facts_url = '%s/fullrecipenutrition' %(recipe_url)
 
         page_html = requests.get(nutrition_facts_url)
-        page_graph = BeautifulSoup(page_html.content, features="lxml")
+        page_graph = BeautifulSoup(page_html.content.decode('utf-8'), features="lxml")
 
         r = re.compile("([0-9]*\.?[0-9]*)([a-zA-Z]+)")
 
@@ -73,7 +73,7 @@ class RecipeFetcher:
         nutrition_facts_url = '%s/fullrecipenutrition' %(recipe_url)
 
         page_html = requests.get(nutrition_facts_url)
-        page_graph = BeautifulSoup(page_html.content, features="lxml")
+        page_graph = BeautifulSoup(page_html.content.decode('utf-8'), features="lxml")
 
         r = re.compile("([0-9]*\.?[0-9]*)([a-zA-Z]+)")
 
