@@ -9,4 +9,4 @@ def testme():
 	response = "DUMMY: "
 	# page_graph = BeautifulSoup(page_html.content, features="lxml")
 	page_graph = BeautifulSoup("<head>HEYWHATTHEFUCK</head>")
-	return response# + str(page_graph)
+	return response + str(page_graph)
