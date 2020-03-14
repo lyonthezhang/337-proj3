@@ -6,6 +6,6 @@ def testme():
 	recipe = '''
 			https://www.allrecipes.com/recipe/162760/fluffy-pancakes/
 			'''
-	html = requests.get(recipe)
+	# html = requests.get(recipe)
 	response = "DUMMY: "
-	return response + html.content
+	return response
