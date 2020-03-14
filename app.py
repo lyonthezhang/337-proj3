@@ -179,7 +179,7 @@ def get_message(userinput, fresh):
     global res_index
 
     if res == False:
-        return "I need you to input a valid recipe URL:"
+        return "I need you to input a valid recipe URL: HEY DOES THIS CHANGE"
     else:
         if fresh:
             return "Got the recipe! What would you like for me to do with it?"
