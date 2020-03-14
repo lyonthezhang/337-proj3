@@ -8,7 +8,7 @@ It's ok.py
 Okbot is the best sous-chef out there. Okbot can scrape a recipe from Allrecipes.com for you and answer questions about the steps and ingredients while you cook. Just type your question or command and Okbot will answer!
 
 ## How to Run OkBot
-1. Make sure you are running a conda environment.
+1. Make sure you are running a conda environment (you do NOT need to install requirements.txt for ok.py - we used requirements.txt for the facebook messenger - see below).
 2. Run `python ok.py`
 3. To end program, type `goodbye` or `bye` into command line.
 
