@@ -10,6 +10,7 @@ Okbot is the best sous-chef out there. Okbot can scrape a recipe from Allrecipes
 ## How to Run OkBot
 1. Make sure you are running a conda environment.
 2. Run `python ok.py`
+3. To end program, type `goodbye` or `bye` into command line.
 
 ## Python Libraries Imported
 - import sys
