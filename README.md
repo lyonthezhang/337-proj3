@@ -22,3 +22,16 @@ Okbot is the best sous-chef out there. Okbot can scrape a recipe from Allrecipes
 - from flask import Flask, request
 - from pymessenger.bot import Bot
 - import os
+
+## Attempt at Connecting to Messenger
+
+We used the following two guides to set up the Flask app connecting to Facebook messenger:
+
+https://www.twilio.com/blog/2017/12/facebook-messenger-bot-python.html
+https://www.twilio.com/blog/2018/02/facebook-messenger-bot-heroku-python-flask.html
+
+The flask ask works perfectly following ONLY the instructions from the first guide and when hosting locally. However, we were unable to successfuly host the bot on a remote server with Heroku due to a multitude of problems (mostly with BeautifulSoup). Here is a screencap showing usage when hosted LOCALLY:
+
+![Conversing with locally hosted messenger OkBot]()
+
+Another thing to note is that the requirements.txt file is NOT for use for running ok.py and was an artifact from linking with Heroku. Please do NOT use it for running ok.py.
