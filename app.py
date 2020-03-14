@@ -6,7 +6,6 @@ from pymessenger.bot import Bot
 import web_scraping
 import parse_recipe
 import os
-import test
 
 app = Flask(__name__)
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
@@ -149,11 +148,8 @@ def receive_message():
                 fresh = False
                 if res == False:
                     try:
-                        bot.send_text_message(recipient_id,"HEY THIS GETS CALLED")
-                        bot.send_text_message(recipient_id,test.testme())
                         res = rf.scrape_recipe(userinput)
                         fresh = True
-                        bot.send_text_message(recipient_id,"BUT THIS DOES NOT")
                     except:
                         pass
                 #Facebook Messenger ID for user so we know where to send response back to
