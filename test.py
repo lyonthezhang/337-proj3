@@ -3,9 +3,8 @@ import re
 import requests
 
 def testme():
-	recipe = '''
-			https://www.allrecipes.com/recipe/162760/fluffy-pancakes/
-			'''
+	recipe = 'https://www.allrecipes.com/recipe/162760/fluffy-pancakes/'
+	
 	html = requests.get(recipe)
 	response = "DUMMY: "
 	return response + html.url#.decode("utf-8")
