@@ -32,6 +32,6 @@ https://www.twilio.com/blog/2018/02/facebook-messenger-bot-heroku-python-flask.h
 
 The flask ask works perfectly following ONLY the instructions from the first guide and when hosting locally. However, we were unable to successfuly host the bot on a remote server with Heroku due to a multitude of problems (mostly with BeautifulSoup). Here is a screencap showing usage when hosted LOCALLY:
 
-![Conversing with locally hosted messenger OkBot]()
+![Conversing with locally hosted messenger OkBot](https://github.com/lyonthezhang/337-proj3/blob/master/messenger.png)
 
 Another thing to note is that the requirements.txt file is NOT for use for running ok.py and was an artifact from linking with Heroku. Please do NOT use it for running ok.py.
