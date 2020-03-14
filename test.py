@@ -7,5 +7,4 @@ def testme():
 			https://www.allrecipes.com/recipe/162760/fluffy-pancakes/
 			'''
 	html = requests.get(recipe)
-	r = re.compile("([0-9]*\.?[0-9]*)([a-zA-Z]+)")
-	return html.content
+	return type(html.content)
