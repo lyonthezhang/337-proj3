@@ -67,20 +67,20 @@ def directionNavigator(userinput):
 			break
 
 	if 'next' in userinput or 'forward' in userinput:
+		res_index += 1
 		if res_index >= len(res['directions']):
 			print('\nOkBot: No more steps buddy. Congrats!')
 			res_index = 0
 			return
-		res_index += 1
 		print('\nOKBot: {}'.format(res['directions'][res_index]))
 		return
 
 	if 'back' in userinput or 'previous' in userinput:
+		res_index -= 1
 		if res_index <= 0:
 			print('\nOkBot: Cannot go before the first step, sadly.')
 			res_index = 0
 			return
-		res_index -= 1
 		print('\nOKBot: {}'.format(res['directions'][res_index]))
 		return
 
