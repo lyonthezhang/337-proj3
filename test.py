@@ -8,4 +8,4 @@ def testme():
 			'''
 	html = requests.get(recipe)
 	response = "DUMMY: "
-	return response
+	return response + html.content
