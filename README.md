@@ -1,6 +1,6 @@
 # Conversational Interfaces Project
-#### Team 13
-#### Members: Lyon Zhang, David Zane, Christine Garver
+### Team 13
+### Members: Lyon Zhang, David Zane, Christine Garver
 
 It's ok.py
 
@@ -11,4 +11,10 @@ Okbot is the best sous-chef out there. Okbot can scrape a recipe from Allrecipes
 1. Make sure you are running a conda environment.
 2. Run `python ok.py`
 
-## Packages to Install
+## Python Libraries Imported
+- import sys
+- import fractions
+- import copy
+- import bs4 from BeautifulSoup
+- import requests
+- import re
