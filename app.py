@@ -145,16 +145,18 @@ def receive_message():
           messaging = event['messaging']
           for message in messaging:
             if message.get('message'):
+                recipient_id = message['sender']['id']
                 userinput = message.get('message')['text']
                 fresh = False
                 if res == False:
                     try:
+                        bot.send_text_message(recipient_id,"HEY THIS GETS CALLED")
                         res = rf.scrape_recipe(userinput)
                         fresh = True
+                        bot.send_text_message(recipient_id,"BUT THIS DOES NOT")
                     except:
                         pass
                 #Facebook Messenger ID for user so we know where to send response back to
-                recipient_id = message['sender']['id']
                 if message['message'].get('text'):
                     response_sent_text = get_message(userinput, fresh)
                     send_message(recipient_id, response_sent_text)
