@@ -1,5 +1,5 @@
 import re
-# from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup
 import requests
 
 def testme():
@@ -7,4 +7,5 @@ def testme():
 
 	html = requests.get(recipe)
 	response = "DUMMY: "
-	return response + html.content#.decode("utf-8")
+	page_graph = BeautifulSoup(page_html.content, features="lxml")
+	return response + str(page_graph)
