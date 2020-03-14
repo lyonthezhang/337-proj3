@@ -5,10 +5,13 @@ from pymessenger.bot import Bot
 
 import web_scraping
 import parse_recipe
+import os
 
 app = Flask(__name__)
-ACCESS_TOKEN = 'EAAIG5gF2h3YBABYLooXsrreFI64wimmOQomdORM6XPLpH3kmgeao8QkBu3pMphY46JTMEERZBHajEvlkjhVhPEEzEmVy9wZB62ed1wW4nZCQTN4JCywjHctv7Rsoh4ZBSnnun6941hL5okcGCiB9MhzfCNL4K6r1wZBQpE85jwwZDZD'
-VERIFY_TOKEN = 'HIVICTOR'
+# ACCESS_TOKEN = 'EAAIG5gF2h3YBABYLooXsrreFI64wimmOQomdORM6XPLpH3kmgeao8QkBu3pMphY46JTMEERZBHajEvlkjhVhPEEzEmVy9wZB62ed1wW4nZCQTN4JCywjHctv7Rsoh4ZBSnnun6941hL5okcGCiB9MhzfCNL4K6r1wZBQpE85jwwZDZD'
+# VERIFY_TOKEN = 'HIVICTOR'
+ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
+VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
 bot = Bot(ACCESS_TOKEN)
 
 expletives = ['fart','darn','heck','shut up','stupid','poop']
