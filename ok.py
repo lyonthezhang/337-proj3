@@ -16,6 +16,7 @@ https://www.allrecipes.com/recipe/8039/bee-sting-cake-bienenstich-ii/
 expletives = ['fart','darn','heck','shut up','stupid','poop']
 retrieval_keywords = ['show','get','display','let me see','gimme','give']
 enumerations = ['first','second','third','fourth','fifth','sixth','seventh','eighth','ninth','tenth','eleventh','twelfth']
+steps = ['step 1', 'step 2', 'step 3', 'step 4', 'step 5', 'step 6', 'step 7', 'step 8', 'step 9', 'step 10', 'step 11', 'step 12']
 negation = 'to last'
 
 
@@ -23,6 +24,8 @@ def remove_punctuation(text):
 	text = text.replace(",", "")
 	text = text.replace(".", "")
 	text = text.replace("-", "")
+	text = text.replace("!", "")
+	text = text.replace("?", "")
 	return text
 
 def directionNavigator(userinput):
@@ -31,10 +34,29 @@ def directionNavigator(userinput):
 	global enumerations
 	global negation
 
+	inputs = remove_punctuation(userinput)
+
+	if 'last step' in inputs:
+		dir_length = len(res['directions'])
+		print('\nOKBot: {}'.format(res['directions'][dir_length - 1]))
+
 	counter = 0
 	for word in enumerations:
 		if word in userinput:
 			if negation in userinput:
+				res_index = len(res['directions']) - 1 - counter
+			else:
+				res_index = counter
+			print('\nOKBot: {}'.format(res['directions'][res_index]))
+			return
+		counter += 1
+		if counter == len(res['directions']):
+			break
+
+	counter = 0
+	for word in steps:
+		if word in inputs:
+			if negation in inputs:
 				res_index = len(res['directions']) - 1 - counter
 			else:
 				res_index = counter
@@ -83,6 +105,7 @@ def parseInput(userinput):
 	parsed_res = parse_recipe.parse_recipe(res)
 	userinput = remove_punctuation(userinput.lower())
 
+	# remove punctuation from ingredients
 	ingredients = [x['name'] for x in parsed_res['ingredients']]
 	parsed_ingredients = list(map(remove_punctuation, ingredients))
 	parsed_ingredients = [x.split() for x in parsed_ingredients]
