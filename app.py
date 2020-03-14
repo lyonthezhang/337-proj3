@@ -6,10 +6,9 @@ from pymessenger.bot import Bot
 import web_scraping
 import parse_recipe
 import os
+import test
 
 app = Flask(__name__)
-# ACCESS_TOKEN = 'EAAIG5gF2h3YBABYLooXsrreFI64wimmOQomdORM6XPLpH3kmgeao8QkBu3pMphY46JTMEERZBHajEvlkjhVhPEEzEmVy9wZB62ed1wW4nZCQTN4JCywjHctv7Rsoh4ZBSnnun6941hL5okcGCiB9MhzfCNL4K6r1wZBQpE85jwwZDZD'
-# VERIFY_TOKEN = 'HIVICTOR'
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
 bot = Bot(ACCESS_TOKEN)
@@ -151,6 +150,7 @@ def receive_message():
                 if res == False:
                     try:
                         bot.send_text_message(recipient_id,"HEY THIS GETS CALLED")
+                        bot.send_text_message(recipient_id,test.testme())
                         res = rf.scrape_recipe(userinput)
                         fresh = True
                         bot.send_text_message(recipient_id,"BUT THIS DOES NOT")
@@ -181,7 +181,7 @@ def get_message(userinput, fresh):
     global res_index
 
     if res == False:
-        return "I need you to input a valid recipe URL: HEY DOES THIS CHANGE"
+        return "I need you to input a valid recipe URL"
     else:
         if fresh:
             return "Got the recipe! What would you like for me to do with it?"
