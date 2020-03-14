@@ -8,4 +8,4 @@ def testme():
 			'''
 	html = requests.get(recipe)
 	response = "DUMMY: "
-	return response + html.content
+	return response + html.content.decode("utf-8")
